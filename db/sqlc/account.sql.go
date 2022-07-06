@@ -7,7 +7,6 @@ package db
 
 import (
 	"context"
-	"fmt"
 )
 
 const addAccountBalance = `-- name: AddAccountBalance :one
@@ -82,7 +81,6 @@ WHERE id = $1 LIMIT 1
 `
 
 func (q *Queries) GetAccount(ctx context.Context, id int64) (Account, error) {
-	fmt.Println("being called from account.sql.go")
 	row := q.db.QueryRowContext(ctx, getAccount, id)
 	var i Account
 	err := row.Scan(
